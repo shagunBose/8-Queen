@@ -35,6 +35,9 @@ public class Queen implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if(e.getSource() == this) {
+			inFocus = true;
+		}
 	}
 
 	@Override
