@@ -26,7 +26,7 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 	static final int SIZE_OF_BOARD_IN_PIXELS = 400;
 	static final int SIZE_OF_SQUARE_IN_PIXELS = SIZE_OF_BOARD_IN_PIXELS/SIZE_OF_BOARD_IN_SQUARES;
 	
-	Tile[][] tiles = new Tile[8][8]; //refer to Tile Class
+	Tile[][] tiles = new Tile[SIZE_OF_BOARD_IN_SQUARES][SIZE_OF_BOARD_IN_SQUARES]; //refer to Tile Class
 	ArrayList<Tile>queens = new ArrayList<Tile>(); //array list to keep track of the queens. 
 	Boolean firstQueen = true; //this is just to ensure that only the first queen is placed randomly but the rest are placed acc. to logic.
 	
