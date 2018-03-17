@@ -27,7 +27,7 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 	static final int SIZE_OF_SQUARE_IN_PIXELS = SIZE_OF_BOARD_IN_PIXELS/SIZE_OF_BOARD_IN_SQUARES;
 	
 	Tile[][] tiles = new Tile[SIZE_OF_BOARD_IN_SQUARES][SIZE_OF_BOARD_IN_SQUARES]; //refer to Tile Class
-	ArrayList<Tile>queens = new ArrayList<Tile>(); //array list to keep track of the queens. 
+	ArrayList<Queen>queens = new ArrayList<Queen>(); //array list to keep track of the queens. 
 	Boolean firstQueen = true; //this is just to ensure that only the first queen is placed randomly but the rest are placed acc. to logic.
 	
 	//constructor
@@ -87,19 +87,7 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 				int size = 30;
 				int fillerSpace = (SIZE_OF_SQUARE_IN_PIXELS-size)/2;
 				
-//				//queen 1
-//				BufferedImage img = null;
-//				try {
-//					img = ImageIO.read(new File("queen.png"));
-//				} catch (IOException e) {}
-//				g.drawImage(img, (0 + fillerSpace), (0 + fillerSpace), 30, 30, null);
-//				
-//				//queen 2
-//				BufferedImage img2 = null;
-//				try {
-//					img = ImageIO.read(new File("queen.png"));
-//				} catch (IOException e) {}
-//				g.drawImage(img, (ratio*1 + fillerSpace), (ratio*1 + fillerSpace), 30, 30, null);
+
 				
 				for(int i = 0; i < SIZE_OF_BOARD_IN_PIXELS; i=i+SIZE_OF_SQUARE_IN_PIXELS) {
 					BufferedImage img = null;
