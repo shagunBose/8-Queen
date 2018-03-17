@@ -39,6 +39,7 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 				count++;
 			}
 		}
+		
 		repaint();
 		//findEightQueen(0);
 //		System.out.println("\nFinal Solution");
