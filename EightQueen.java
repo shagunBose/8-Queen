@@ -1,16 +1,18 @@
 //Shagun Bose
-//2960170
-//Lab 6
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -19,7 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
-public class EightQueen extends JPanel{
+public class EightQueen extends JPanel implements MouseListener, MouseMotionListener{
 	
 	Tile[][] tiles = new Tile[8][8]; //refer to Tile Class
 	ArrayList<Tile>queens = new ArrayList<Tile>(); //array list to keep track of the queens. 
@@ -38,13 +40,12 @@ public class EightQueen extends JPanel{
 			}
 		}
 		repaint();
-		
-		findEightQueen(0);
-		System.out.println("\nFinal Solution");
-		for(Tile i : queens) {
-			System.out.println("Queen at Tile [" + i.getRow() + ", " + i.getCol() + "]");
-		}
-		System.out.println("");
+		//findEightQueen(0);
+//		System.out.println("\nFinal Solution");
+//		for(Tile i : queens) {
+//			System.out.println("Queen at Tile [" + i.getRow() + ", " + i.getCol() + "]");
+//		}
+//		System.out.println("");
 		
 	}
 	
@@ -75,15 +76,24 @@ public class EightQueen extends JPanel{
 					}
 				}
 				
-				for(Tile i: queens) {
-					g.setColor(Color.BLUE);
+				for(int i = 0; i < 400; i=i+50) {
 					BufferedImage img = null;
 					try {
 						img = ImageIO.read(new File("queen.png"));
 					} catch (IOException e) {
 					}
-					g.drawImage(img, (i.getCol()*50 + 10), (i.getRow()*50 + 10), 30, 30, null);
+					g.drawImage(img, (i*50 + 10), (0 + 10), 30, 30, null);
 				}
+				
+//				for(Tile i: queens) {
+//					g.setColor(Color.BLUE);
+//					BufferedImage img = null;
+//					try {
+//						img = ImageIO.read(new File("queen.png"));
+//					} catch (IOException e) {
+//					}
+//					g.drawImage(img, (i.getCol()*50 + 10), (i.getRow()*50 + 10), 30, 30, null);
+//				}
 				
 				g.dispose();
 	}
@@ -161,6 +171,32 @@ public class EightQueen extends JPanel{
 		return false;
 	}
 
+	@Override
+	public void mouseClicked(MouseEvent e) {}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+	}
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+	
+	@Override
+	public void mousePressed(MouseEvent e) {	
+	}
+	
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+	
+	@Override
+	public void mouseExited(MouseEvent e) {}
+	
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+	
 	//Main class to test program.
 	public static void main (String[] args) {
 		JFrame frame = new JFrame("Board");
