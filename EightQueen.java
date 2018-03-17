@@ -112,77 +112,77 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 	}
 	
 	//method to calculate which tiles would be rendered unsafe by a placed queen and set them as unsafe (Tile class has a boolean safe)
-	public Boolean calculateSafeSpots(int row) {
-		if(queens.isEmpty()) {
-			return true;
-		}
-		//boolean checked is set to false for all tiles before iteration as it is primarily there to ensure
-		//that the same tiles which is marked unsafe initially due to one queen 
-		//is not marked safe later to another queen 
-		for(int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
-			tiles[row][j].setChecked(false); 
-		}
-		
-		boolean check = false; //if there are no safe spots this will return false. 
-		for(Tile t: queens) {
-			for(int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
-				int r = t.row;
-				int c = t.col;
-				int tr = tiles[row][j].row;
-				int tc = tiles[row][j].col;
-				if(tc == c || tr == r || r-c == tr-tc || r+c == tr+tc) {
-					tiles[row][j].setSafe(false);
-					//System.out.println("tile unsafe: row " + (row +1) + " col " + (j+1)  + " by QUEEN " + (queens.indexOf(t) + 1));
-					tiles[row][j].setChecked(true); //this is to ensure that the tile is not set safe later because another queen doesn't not cross there.
-				} else {
-					if(!tiles[row][j].isChecked()) { //only if a tile has not already been marked unsafe in this iteration is it made safe. 
-						tiles[row][j].setSafe(true);
-						check = true; //if there is even one safe spot this will return true
-					}
-				}
-					
-			}
-		}
-		return check;
-	}
+//	public Boolean calculateSafeSpots(int row) {
+//		if(queens.isEmpty()) {
+//			return true;
+//		}
+//		//boolean checked is set to false for all tiles before iteration as it is primarily there to ensure
+//		//that the same tiles which is marked unsafe initially due to one queen 
+//		//is not marked safe later to another queen 
+//		for(int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
+//			tiles[row][j].setChecked(false); 
+//		}
+//		
+//		boolean check = false; //if there are no safe spots this will return false. 
+//		for(Tile t: queens) {
+//			for(int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
+//				int r = t.row;
+//				int c = t.col;
+//				int tr = tiles[row][j].row;
+//				int tc = tiles[row][j].col;
+//				if(tc == c || tr == r || r-c == tr-tc || r+c == tr+tc) {
+//					tiles[row][j].setSafe(false);
+//					//System.out.println("tile unsafe: row " + (row +1) + " col " + (j+1)  + " by QUEEN " + (queens.indexOf(t) + 1));
+//					tiles[row][j].setChecked(true); //this is to ensure that the tile is not set safe later because another queen doesn't not cross there.
+//				} else {
+//					if(!tiles[row][j].isChecked()) { //only if a tile has not already been marked unsafe in this iteration is it made safe. 
+//						tiles[row][j].setSafe(true);
+//						check = true; //if there is even one safe spot this will return true
+//					}
+//				}
+//					
+//			}
+//		}
+//		return check;
+//	}
 	
 	//Recursive formula with logic 
-	public boolean findEightQueen(int row) {
-		if(calculateSafeSpots(row)) { //only if there are safe spots will the function continue, otherwise it will backtrack to previous call
-			//set queen 
-			for (int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
-				if(tiles[row][j].isSafe()) {
-					//this is only for the first queen 
-					if(row == 0 && firstQueen) {
-						Random r = new Random();
-						int col = r.nextInt(8);
-						queens.add(tiles[row][col]);
-						System.out.println("Setting tile at row " + (row +1) + " col " + (col+1) + " as Queen " + (queens.indexOf(tiles[row][col])+1));
-						firstQueen = false;
-						
-					} else {
-						//set queen at first available safe spot. 
-						queens.add(tiles[row][j]); //add queen to queen array
-						System.out.println("Setting tile at row " + (row+1) + " col " + (j+1) + " as Queen " + (queens.indexOf(tiles[row][j])+1));
-					}
-					
-		
-					if(row < 7) {
-						if(!findEightQueen(row+1)) {
-							System.out.println("\nNo more moves for row " + (row+2));
-							queens.remove(queens.size()-1); //remove queen from queen array
-							System.out.println("Backtracking to previous queen: " + "Removing queen " + (queens.size() + 1));
-							continue; //this ensures that the function looks for the NEXT available safe space. 
-							//in essence this function is not called again when backtracked, it just goes to the next iteration 
-							//of the loop of safe spots which was calculated keeping the queen up to that point
-						}
-					}
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+//	public boolean findEightQueen(int row) {
+//		if(calculateSafeSpots(row)) { //only if there are safe spots will the function continue, otherwise it will backtrack to previous call
+//			//set queen 
+//			for (int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
+//				if(tiles[row][j].isSafe()) {
+//					//this is only for the first queen 
+//					if(row == 0 && firstQueen) {
+//						Random r = new Random();
+//						int col = r.nextInt(8);
+//						queens.add(tiles[row][col]);
+//						System.out.println("Setting tile at row " + (row +1) + " col " + (col+1) + " as Queen " + (queens.indexOf(tiles[row][col])+1));
+//						firstQueen = false;
+//						
+//					} else {
+//						//set queen at first available safe spot. 
+//						queens.add(tiles[row][j]); //add queen to queen array
+//						System.out.println("Setting tile at row " + (row+1) + " col " + (j+1) + " as Queen " + (queens.indexOf(tiles[row][j])+1));
+//					}
+//					
+//		
+//					if(row < 7) {
+//						if(!findEightQueen(row+1)) {
+//							System.out.println("\nNo more moves for row " + (row+2));
+//							queens.remove(queens.size()-1); //remove queen from queen array
+//							System.out.println("Backtracking to previous queen: " + "Removing queen " + (queens.size() + 1));
+//							continue; //this ensures that the function looks for the NEXT available safe space. 
+//							//in essence this function is not called again when backtracked, it just goes to the next iteration 
+//							//of the loop of safe spots which was calculated keeping the queen up to that point
+//						}
+//					}
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
+//	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {}
