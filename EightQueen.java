@@ -34,9 +34,9 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 	public EightQueen() {
 
 		System.out.println("\n>>New Board<<\n");
-		System.out.println("Number of Squares: " + SIZE_OF_BOARD_IN_SQUARES);
-		System.out.println("Lenght of Board: " + SIZE_OF_BOARD_IN_PIXELS);
-		System.out.println("Ratio: " + SIZE_OF_SQUARE_IN_PIXELS);
+		System.out.println("size of board in squares: " + SIZE_OF_BOARD_IN_SQUARES);
+		System.out.println("size of board in pixels: " + SIZE_OF_BOARD_IN_PIXELS);
+		System.out.println("size of squares in pixels: " + SIZE_OF_SQUARE_IN_PIXELS);
 		int count = 1;
 		for(int i = 0; i < SIZE_OF_BOARD_IN_SQUARES; i++) {
 			for(int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
@@ -48,6 +48,7 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 		}
 		
 		repaint();
+		
 		//findEightQueen(0);
 //		System.out.println("\nFinal Solution");
 //		for(Tile i : queens) {
