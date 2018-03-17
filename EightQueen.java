@@ -32,7 +32,11 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 	
 	//constructor
 	public EightQueen() {
+
 		System.out.println("\n>>New Board<<\n");
+		System.out.println("Number of Squares: " + numOfSquares);
+		System.out.println("Lenght of Board: " + boardLength);
+		System.out.println("Ratio: " + ratio);
 		int count = 1;
 		for(int i = 0; i < numOfSquares; i++) {
 			for(int j = 0; j < numOfSquares; j++) {
@@ -79,16 +83,33 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 					}
 				}
 				
-				for(int i = 0; i < boardLength; i=i+ratio) {
-					BufferedImage img = null;
-					try {
-						img = ImageIO.read(new File("queen.png"));
-					} catch (IOException e) {
-					}
-					int size = 30;
-					int fillerSpace = (ratio-size)/2;
-					g.drawImage(img, (i*ratio + fillerSpace), (0 + fillerSpace), 30, 30, null);
-				}
+				//common
+				int size = 30;
+				int fillerSpace = (ratio-size)/2;
+				
+				//queen 1
+				BufferedImage img = null;
+				try {
+					img = ImageIO.read(new File("queen.png"));
+				} catch (IOException e) {}
+				g.drawImage(img, (0 + fillerSpace), (0 + fillerSpace), 30, 30, null);
+				
+				//queen 2
+				BufferedImage img2 = null;
+				try {
+					img = ImageIO.read(new File("queen.png"));
+				} catch (IOException e) {}
+				g.drawImage(img, (ratio*1 + fillerSpace), (ratio*1 + fillerSpace), 30, 30, null);
+				
+//				for(int i = 0; i < boardLength; i=i+ratio) {
+//					BufferedImage img = null;
+//					try {
+//						img = ImageIO.read(new File("queen.png"));
+//					} catch (IOException e) {}
+//					int size = 30;
+//					int fillerSpace = (ratio-size)/2;
+//					g.drawImage(img, (i*ratio + fillerSpace), (0 + fillerSpace), 30, 30, null);
+//				}
 				
 //				for(Tile i: queens) {
 //					g.setColor(Color.BLUE);
