@@ -26,20 +26,20 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 	Tile[][] tiles = new Tile[8][8]; //refer to Tile Class
 	ArrayList<Tile>queens = new ArrayList<Tile>(); //array list to keep track of the queens. 
 	Boolean firstQueen = true; //this is just to ensure that only the first queen is placed randomly but the rest are placed acc. to logic.
-	int numOfSquares = 8;
-	int boardLength = 400;
-	int ratio = boardLength/numOfSquares;
+	static final int SIZE_OF_BOARD_IN_SQUARES = 8;
+	static final int SIZE_OF_BOARD_IN_PIXELS = 400;
+	static final int SIZE_OF_SQUARE_IN_PIXELS = SIZE_OF_BOARD_IN_PIXELS/SIZE_OF_BOARD_IN_SQUARES;
 	
 	//constructor
 	public EightQueen() {
 
 		System.out.println("\n>>New Board<<\n");
-		System.out.println("Number of Squares: " + numOfSquares);
-		System.out.println("Lenght of Board: " + boardLength);
-		System.out.println("Ratio: " + ratio);
+		System.out.println("Number of Squares: " + SIZE_OF_BOARD_IN_SQUARES);
+		System.out.println("Lenght of Board: " + SIZE_OF_BOARD_IN_PIXELS);
+		System.out.println("Ratio: " + SIZE_OF_SQUARE_IN_PIXELS);
 		int count = 1;
-		for(int i = 0; i < numOfSquares; i++) {
-			for(int j = 0; j < numOfSquares; j++) {
+		for(int i = 0; i < SIZE_OF_BOARD_IN_SQUARES; i++) {
+			for(int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
 				tiles[i][j] = new Tile(count);
 				tiles[i][j].setRow(i);
 				tiles[i][j].setCol(j);
@@ -67,17 +67,17 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 	public void update(Graphics g) {
 		//Draw Board
 				g.setColor(Color.BLACK);
-				g.fillRect(0, 0, boardLength, boardLength); //makes the basic black board 
-				for(int i = 0; i < numOfSquares; i++) {
-					for (int j = 0; j < numOfSquares; j++) { //add white squares 
+				g.fillRect(0, 0, SIZE_OF_BOARD_IN_PIXELS, SIZE_OF_BOARD_IN_PIXELS); //makes the basic black board 
+				for(int i = 0; i < SIZE_OF_BOARD_IN_SQUARES; i++) {
+					for (int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) { //add white squares 
 						g.setColor(Color.WHITE);
 						int tileNumb = tiles[i][j].pos;
 						if(i%2 == 0) { //every column
 							if(tileNumb%2 == 0) { //each alernate tile > here it't the even tiles 
-								g.fillRect(i*ratio, j*ratio, ratio, ratio); }
+								g.fillRect(i*SIZE_OF_SQUARE_IN_PIXELS, j*SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS); }
 						}else {
 							if(tileNumb%2 != 0) {
-								g.fillRect(i*ratio, j*ratio, ratio, ratio); //here it's the odd tiles 
+								g.fillRect(i*SIZE_OF_SQUARE_IN_PIXELS, j*SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS); //here it's the odd tiles 
 							}
 						}
 					}
@@ -85,31 +85,30 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 				
 				//common
 				int size = 30;
-				int fillerSpace = (ratio-size)/2;
+				int fillerSpace = (SIZE_OF_SQUARE_IN_PIXELS-size)/2;
 				
-				//queen 1
-				BufferedImage img = null;
-				try {
-					img = ImageIO.read(new File("queen.png"));
-				} catch (IOException e) {}
-				g.drawImage(img, (0 + fillerSpace), (0 + fillerSpace), 30, 30, null);
+//				//queen 1
+//				BufferedImage img = null;
+//				try {
+//					img = ImageIO.read(new File("queen.png"));
+//				} catch (IOException e) {}
+//				g.drawImage(img, (0 + fillerSpace), (0 + fillerSpace), 30, 30, null);
+//				
+//				//queen 2
+//				BufferedImage img2 = null;
+//				try {
+//					img = ImageIO.read(new File("queen.png"));
+//				} catch (IOException e) {}
+//				g.drawImage(img, (ratio*1 + fillerSpace), (ratio*1 + fillerSpace), 30, 30, null);
 				
-				//queen 2
-				BufferedImage img2 = null;
-				try {
-					img = ImageIO.read(new File("queen.png"));
-				} catch (IOException e) {}
-				g.drawImage(img, (ratio*1 + fillerSpace), (ratio*1 + fillerSpace), 30, 30, null);
-				
-//				for(int i = 0; i < boardLength; i=i+ratio) {
-//					BufferedImage img = null;
-//					try {
-//						img = ImageIO.read(new File("queen.png"));
-//					} catch (IOException e) {}
-//					int size = 30;
-//					int fillerSpace = (ratio-size)/2;
-//					g.drawImage(img, (i*ratio + fillerSpace), (0 + fillerSpace), 30, 30, null);
-//				}
+				for(int i = 0; i < SIZE_OF_BOARD_IN_PIXELS; i=i+SIZE_OF_SQUARE_IN_PIXELS) {
+					BufferedImage img = null;
+					try {
+						img = ImageIO.read(new File("queen.png"));
+					} catch (IOException e) {}
+					
+					g.drawImage(img, (i*SIZE_OF_SQUARE_IN_PIXELS + fillerSpace), (0 + fillerSpace), 30, 30, null);
+				}
 				
 //				for(Tile i: queens) {
 //					g.setColor(Color.BLUE);
@@ -132,13 +131,13 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 		//boolean checked is set to false for all tiles before iteration as it is primarily there to ensure
 		//that the same tiles which is marked unsafe initially due to one queen 
 		//is not marked safe later to another queen 
-		for(int j = 0; j < numOfSquares; j++) {
+		for(int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
 			tiles[row][j].setChecked(false); 
 		}
 		
 		boolean check = false; //if there are no safe spots this will return false. 
 		for(Tile t: queens) {
-			for(int j = 0; j < numOfSquares; j++) {
+			for(int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
 				int r = t.row;
 				int c = t.col;
 				int tr = tiles[row][j].row;
@@ -163,7 +162,7 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 	public boolean findEightQueen(int row) {
 		if(calculateSafeSpots(row)) { //only if there are safe spots will the function continue, otherwise it will backtrack to previous call
 			//set queen 
-			for (int j = 0; j < numOfSquares; j++) {
+			for (int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
 				if(tiles[row][j].isSafe()) {
 					//this is only for the first queen 
 					if(row == 0 && firstQueen) {
