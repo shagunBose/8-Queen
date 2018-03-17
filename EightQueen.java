@@ -22,13 +22,13 @@ import javax.swing.Timer;
 
 @SuppressWarnings("serial")
 public class EightQueen extends JPanel implements MouseListener, MouseMotionListener{
+	static final int SIZE_OF_BOARD_IN_SQUARES = 8;
+	static final int SIZE_OF_BOARD_IN_PIXELS = 400;
+	static final int SIZE_OF_SQUARE_IN_PIXELS = SIZE_OF_BOARD_IN_PIXELS/SIZE_OF_BOARD_IN_SQUARES;
 	
 	Tile[][] tiles = new Tile[8][8]; //refer to Tile Class
 	ArrayList<Tile>queens = new ArrayList<Tile>(); //array list to keep track of the queens. 
 	Boolean firstQueen = true; //this is just to ensure that only the first queen is placed randomly but the rest are placed acc. to logic.
-	static final int SIZE_OF_BOARD_IN_SQUARES = 8;
-	static final int SIZE_OF_BOARD_IN_PIXELS = 400;
-	static final int SIZE_OF_SQUARE_IN_PIXELS = SIZE_OF_BOARD_IN_PIXELS/SIZE_OF_BOARD_IN_SQUARES;
 	
 	//constructor
 	public EightQueen() {
