@@ -20,6 +20,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+// TODO tiles to -> squares
+// TODO row, col -> y,x
+// TODO remove all access modifiers
+//TODO don't use final or static either, instead use volatile on stuff that is mutable
 @SuppressWarnings("serial")
 public class EightQueen extends JPanel implements MouseListener, MouseMotionListener{
 	static final int SIZE_OF_BOARD_IN_SQUARES = 8;
@@ -37,13 +41,10 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 		System.out.println("size of board in squares: " + SIZE_OF_BOARD_IN_SQUARES);
 		System.out.println("size of board in pixels: " + SIZE_OF_BOARD_IN_PIXELS);
 		System.out.println("size of squares in pixels: " + SIZE_OF_SQUARE_IN_PIXELS);
-		int count = 1;
-		for(int i = 0; i < SIZE_OF_BOARD_IN_SQUARES; i++) {
-			for(int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) {
-				tiles[i][j] = new Tile(count);
-				tiles[i][j].setRow(i);
-				tiles[i][j].setCol(j);
-				count++;
+
+		for(int y = 0; y < SIZE_OF_BOARD_IN_SQUARES; y++) {
+			for(int x = 0; x < SIZE_OF_BOARD_IN_SQUARES; x++) {
+				tiles[x][y] = new Tile(x, y);
 			}
 		}
 		
@@ -241,50 +242,23 @@ class Tile {
 	
 	boolean safe = true; //checks if this tile is safe (default = true)
 	boolean checked = false; //used to calculate safe spots (see CalculateSafeSpots() function in EightQueen
-	int row; 
-	int col;
+	final int row; 
+	final int col;
 	
-	//this looks at which tile# the tile is at on the 8x8 board. This is used to draw the white squares on the board.
-	//It is a primarily meant for graphics. 
-	int pos; 
 	
-	public Tile(int n) {
-		pos = n;
+	public Tile(int row, int col) {
+		this.row = row;
+		this.col = col;
 		safe = true;
 	}
-	
-	//getters and setters for each variable 
-	public boolean isChecked() {
-		return checked;
+	public boolean isWhite() {
+		return !isBlack();
 	}
-	public void setChecked(boolean checked) {
-		this.checked = checked;
+	public boolean isBlack() {
+		int indexOfSquare = (col + row * EightQueen.SIZE_OF_BOARD_IN_SQUARES);
+		return indexOfSquare % 2 == 0;
 	}
 
-	public boolean isSafe() {
-		return safe;
-	}
-	public void setSafe(boolean safe) {
-		this.safe = safe;
-	}
-	public int getPos() {
-		return pos;
-	}
-	public void setPos(int pos) {
-		this.pos = pos;
-	}
-	public int getRow() {
-		return row;
-	}
-	public void setRow(int row) {
-		this.row = row;
-	}
-	public int getCol() {
-		return col;
-	}
-	public void setCol(int col) {
-		this.col = col;
-	}
 }
 
 class Queen {
