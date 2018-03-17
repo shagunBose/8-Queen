@@ -1,3 +1,4 @@
+import java.awt.Color;
 
 public class Queen {
 	
@@ -9,6 +10,7 @@ public class Queen {
 	boolean isDragging;
 	boolean placed;
 	boolean safe;
+	Color color; //unsafe queen is red, safe queen is blue
 	
 
 }
