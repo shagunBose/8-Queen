@@ -58,18 +58,18 @@ public class EightQueen extends JPanel{
 	public void update(Graphics g) {
 		//Draw Board
 				g.setColor(Color.BLACK);
-				g.fillRect(0, 0, 400, 400);
+				g.fillRect(0, 0, 400, 400); //makes the basic black board 
 				for(int i = 0; i < 8; i++) {
-					for (int j = 0; j < 8; j++) {
+					for (int j = 0; j < 8; j++) { //add white squares 
 						g.setColor(Color.WHITE);
 						int a = tiles[i][j].pos;
-						if(i%2 ==0) {
-							if(a%2 == 0) {
-								g.fillRect(i*50, j*50, 50, 50);
+						if(i%2 ==0) { //each alternate row 
+							if(a%2 == 0) { //each alernate tile > here it't the even tiles 
+								g.fillRect(i*50, j*50, 50, 50); 
 							}
 						}else {
 							if(a%2 != 0) {
-								g.fillRect(i*50, j*50, 50, 50);
+								g.fillRect(i*50, j*50, 50, 50); //here it's the odd tiles 
 							}
 						}
 					}
