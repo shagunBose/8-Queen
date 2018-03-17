@@ -6,5 +6,6 @@ public class Queen {
 	boolean inFocus;
 	boolean isDragging;
 	boolean placed;
+	boolean safe;
 
 }
