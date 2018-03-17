@@ -22,7 +22,6 @@ import javax.swing.Timer;
 
 // TODO tiles to -> squares
 // TODO row, col -> y,x
-// TODO remove all access modifiers
 //TODO don't use final or static either, instead use volatile on stuff that is mutable
 @SuppressWarnings("serial")
 public class EightQueen extends JPanel implements MouseListener, MouseMotionListener{
@@ -30,7 +29,7 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 	static final int SIZE_OF_BOARD_IN_PIXELS = 400;
 	static final int SIZE_OF_SQUARE_IN_PIXELS = SIZE_OF_BOARD_IN_PIXELS/SIZE_OF_BOARD_IN_SQUARES;
 	
-	Tile[][] tiles = new Tile[SIZE_OF_BOARD_IN_SQUARES][SIZE_OF_BOARD_IN_SQUARES]; //refer to Tile Class
+	Tile[][] squares = new Tile[SIZE_OF_BOARD_IN_SQUARES][SIZE_OF_BOARD_IN_SQUARES]; //refer to Tile Class
 	ArrayList<Queen>queens = new ArrayList<Queen>(); //array list to keep track of the queens. 
 	Boolean firstQueen = true; //this is just to ensure that only the first queen is placed randomly but the rest are placed acc. to logic.
 	
@@ -44,7 +43,7 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 
 		for(int y = 0; y < SIZE_OF_BOARD_IN_SQUARES; y++) {
 			for(int x = 0; x < SIZE_OF_BOARD_IN_SQUARES; x++) {
-				tiles[x][y] = new Tile(x, y);
+				squares[x][y] = new Tile(x, y);
 			}
 		}
 		
@@ -73,7 +72,7 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 				for(int i = 0; i < SIZE_OF_BOARD_IN_SQUARES; i++) {
 					for (int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) { //add white squares 
 						g.setColor(Color.WHITE);
-						int tileNumb = tiles[i][j].pos;
+						int tileNumb = squares[i][j].pos;
 						if(i%2 == 0) { //every column
 							if(tileNumb%2 == 0) { //each alernate tile > here it't the even tiles 
 								g.fillRect(i*SIZE_OF_SQUARE_IN_PIXELS, j*SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS); }
