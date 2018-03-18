@@ -20,7 +20,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-// TODO tiles to -> squares
 // TODO row, col -> y,x
 //TODO don't use final or static either, instead use volatile on stuff that is mutable
 @SuppressWarnings("serial")
@@ -69,17 +68,14 @@ public class EightQueen extends JPanel implements MouseListener, MouseMotionList
 		//Draw Board
 				g.setColor(Color.BLACK);
 				g.fillRect(0, 0, SIZE_OF_BOARD_IN_PIXELS, SIZE_OF_BOARD_IN_PIXELS); //makes the basic black board 
-				for(int i = 0; i < SIZE_OF_BOARD_IN_SQUARES; i++) {
-					for (int j = 0; j < SIZE_OF_BOARD_IN_SQUARES; j++) { //add white squares 
-						g.setColor(Color.WHITE);
-						int tileNumb = squares[i][j].pos;
-						if(i%2 == 0) { //every column
-							if(tileNumb%2 == 0) { //each alernate tile > here it't the even tiles 
-								g.fillRect(i*SIZE_OF_SQUARE_IN_PIXELS, j*SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS); }
-						}else {
-							if(tileNumb%2 != 0) {
-								g.fillRect(i*SIZE_OF_SQUARE_IN_PIXELS, j*SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS); //here it's the odd tiles 
-							}
+				for(int y = 0; y < SIZE_OF_BOARD_IN_SQUARES; y++) {
+					for (int x = 0; x < SIZE_OF_BOARD_IN_SQUARES; x++) { //add white squares 
+						if(squares[x][y].isBlack()) {
+							g.setColor(Color.BLACK);
+							g.fillRect(y*SIZE_OF_SQUARE_IN_PIXELS, x*SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS);
+						} else if (squares[x][y].isWhite()) {
+							g.setColor(Color.WHITE);
+							g.fillRect(y*SIZE_OF_SQUARE_IN_PIXELS, x*SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS, SIZE_OF_SQUARE_IN_PIXELS);
 						}
 					}
 				}
