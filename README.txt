@@ -1,4 +1,5 @@
-Shagun Bose
+IMPORTANT: I am in the process of updating this code
+THIS CODE IS UNDER CONSTRUCTION
 
 The 8 Queen puzzle basically asks the question of how you could place 8 queens on a 8x8 chessboard such that they do not intercept each other. A queen can move forwards, backwards and diagonally. 
 
