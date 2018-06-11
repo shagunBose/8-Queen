@@ -1,6 +1,4 @@
 //Shagun Bose
-//2960170
-//Lab 6
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -58,18 +56,18 @@ public class EightQueen extends JPanel{
 	public void update(Graphics g) {
 		//Draw Board
 				g.setColor(Color.BLACK);
-				g.fillRect(0, 0, 400, 400); //makes the basic black board 
+				g.fillRect(0, 0, 400, 400);
 				for(int i = 0; i < 8; i++) {
-					for (int j = 0; j < 8; j++) { //add white squares 
+					for (int j = 0; j < 8; j++) {
 						g.setColor(Color.WHITE);
 						int a = tiles[i][j].pos;
-						if(i%2 ==0) { //each alternate row 
-							if(a%2 == 0) { //each alernate tile > here it't the even tiles 
-								g.fillRect(i*50, j*50, 50, 50); 
+						if(i%2 ==0) {
+							if(a%2 == 0) {
+								g.fillRect(i*50, j*50, 50, 50);
 							}
 						}else {
 							if(a%2 != 0) {
-								g.fillRect(i*50, j*50, 50, 50); //here it's the odd tiles 
+								g.fillRect(i*50, j*50, 50, 50);
 							}
 						}
 					}
@@ -186,3 +184,54 @@ public class EightQueen extends JPanel{
 		
 	}
 }
+
+class Tile {
+	
+	boolean safe = true; //checks if this tile is safe (default = true)
+	boolean checked = false; //used to calculate safe spots (see CalculateSafeSpots() function in EightQueen
+	int row; 
+	int col;
+	
+	//this looks at which tile# the tile is at on the 8x8 board. This is used to draw the white squares on the board.
+	//It is a primarily meant for graphics. 
+	int pos; 
+	
+	public Tile(int n) {
+		pos = n;
+		safe = true;
+	}
+	
+	//getters and setters for each variable 
+	public boolean isChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+
+	public boolean isSafe() {
+		return safe;
+	}
+	public void setSafe(boolean safe) {
+		this.safe = safe;
+	}
+	public int getPos() {
+		return pos;
+	}
+	public void setPos(int pos) {
+		this.pos = pos;
+	}
+	public int getRow() {
+		return row;
+	}
+	public void setRow(int row) {
+		this.row = row;
+	}
+	public int getCol() {
+		return col;
+	}
+	public void setCol(int col) {
+		this.col = col;
+	}
+}
+
