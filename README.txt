@@ -1,7 +1,6 @@
-IMPORTANT: I am in the process of updating this code
-THIS CODE IS UNDER CONSTRUCTION
-
 The 8 Queen puzzle basically asks the question of how you could place 8 queens on a 8x8 chessboard such that they do not intercept each other. A queen can move forwards, backwards and diagonally. 
+
+Through this project i wanted to attempt writing a recursive solution that incorporates backtracking as a strategy! 
 
 Notes: 
 - I used a little bit GUI - where you can refresh the board to see different solution
@@ -21,7 +20,7 @@ For future improvements:
 - In the automatic version, you should be able to watch as the program searches for the Queen whereas in the manual one the user can place queen and try to figure out where to place each queen. 
 
 Compile and Run Instructions:
-Compile by -  javac fileName.java
-Run by -  java fileName
+Compile by -  javac EightQueen.java
+Run by -  java EightQueen
 
 Thank you!
